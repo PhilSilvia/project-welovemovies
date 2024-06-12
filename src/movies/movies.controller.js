@@ -2,7 +2,8 @@ const service = require("./movies.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 async function list(req, res, next){
-    const data = await service.list();
+    const { is_showing } = req.query;
+    const data = is_showing? await service.listShowing() : await service.list();
     res.json({ data: data });
 }
 
