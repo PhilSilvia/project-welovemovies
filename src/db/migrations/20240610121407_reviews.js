@@ -13,5 +13,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.dropTable("reviews");
+  return knex.schema.raw("DROP TABLE reviews CASCADE");
 };
