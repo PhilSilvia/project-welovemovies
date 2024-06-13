@@ -12,5 +12,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-  return knex.schema.raw("DROP TABLE movies CASCADE");
+  return knex.schema.dropTable("movies");
 };
