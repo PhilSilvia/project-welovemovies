@@ -4,7 +4,12 @@ const { as } = require("../db/connection");
 
 async function list(req, res, next){
     const { is_showing } = req.query;
-    const data = is_showing? await service.listShowing() : await service.list();
+    let data = {};
+    if (is_showing){
+        data = await service.listShowing();
+    } else {
+        data = await service.list();
+    }
     res.json({ data: data });
 }
 
