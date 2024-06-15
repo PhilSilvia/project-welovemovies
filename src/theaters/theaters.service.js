@@ -1,5 +1,9 @@
+// Database services for the /theaters route
+
 const knex = require("../db/connection");
 
+// Helper function that will build an array with the movie details for
+// a theater after it's been retrieved from the database
 const reduceProperties = require("../utils/reduce-properties");
 const addMovies = reduceProperties("theater_id", 
     {
@@ -13,6 +17,9 @@ const addMovies = reduceProperties("theater_id",
     }
 );
 
+// Returns the full details for all theaters in the database.
+// Also joins the movie details for any movies that the theater
+// is currently showing. 
 function list(){
     return knex("theaters as t")
         .join("movies_theaters as mt", "t.theater_id", "mt.theater_id")
